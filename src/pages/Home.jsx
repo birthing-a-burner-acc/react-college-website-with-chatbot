@@ -4,6 +4,9 @@ import Facilities from "../components/Facilities/Facilities";
 import Cta from "../components/Cta/Cta";
 import Testimonials from "../components/Testimonials/Testimonials";
 import Footer from "../components/Footer/Footer";
+import FloatingChat from "../components/ChatBotComponent/FloatingChat";
+
+const GEMINI_KEY = import.meta.env.VITE_GEMINI_KEY;
 
 const Home = () => {
   return (
@@ -14,6 +17,7 @@ const Home = () => {
       <Cta />
       <Testimonials />
       <Footer />
+      <FloatingChat apiKey={GEMINI_KEY} />
     </>
   );
 };

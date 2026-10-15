@@ -1,0 +1,155 @@
+:root {
+  --fc-header-h: 52px;
+  --fc-radius: 12px;
+  --fc-gap: 24px;
+}
+
+/* ---- Floating Action Button ---- */
+.floating-chat-button {
+  position: fixed;
+  bottom: var(--fc-gap);
+  right: var(--fc-gap);
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #ff3e17;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.floating-chat-button:hover  { transform: scale(1.08); box-shadow: 0 6px 18px rgba(0,0,0,.28); }
+.floating-chat-button:active { transform: scale(0.96); }
+.floating-chat-button.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+}
+
+/* ---- Chat Window ----
+   IMPORTANT: display and height NEVER change.
+   We only use transform + clip-path, which do not affect layout,
+   so DeepChat's container keeps its exact size → state preserved. */
+.floating-chat-window {
+  position: fixed;
+  bottom: var(--fc-gap);
+  right: var(--fc-gap);
+  z-index: 1001;
+  width: 380px;
+  height: 560px;
+  max-height: calc(100vh - 2 * var(--fc-gap));
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  display: flex;              /* always flex — never none */
+  flex-direction: column;
+  overflow: hidden;
+
+  /* rounding is done via clip-path so we can animate it */
+  clip-path: inset(0 0 0 0 round var(--fc-radius));
+  transform-origin: bottom right;
+  transition: transform 0.25s ease, clip-path 0.25s ease, opacity 0.25s ease;
+  will-change: transform, clip-path, opacity;
+}
+
+/* CLOSED: slid fully below the viewport, but still rendered */
+.floating-chat-window.is-closed {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(100% + 40px));
+  clip-path: inset(0 0 0 0 round var(--fc-radius));
+}
+
+/* OPEN: normal */
+.floating-chat-window.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0 round var(--fc-radius));
+}
+
+/* ---- Header Bar ---- */
+.floating-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: var(--fc-header-h);
+  padding: 0 10px 0 16px;
+  box-sizing: border-box;
+  background: #ff3e17;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.floating-chat-title {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
+}
+
+.floating-chat-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.floating-chat-control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+.floating-chat-control-btn:hover  { opacity: 1; background: rgba(255,255,255,.2); }
+.floating-chat-control-btn:active { background: rgba(255,255,255,.35); }
+
+/* ---- Body ---- */
+.floating-chat-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  :root { --fc-gap: 12px; }
+
+  .floating-chat-window {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    clip-path: none;
+  }
+  .floating-chat-window.is-closed {
+    clip-path: none;
+    transform: translateY(calc(100% + 40px));
+  }
+  .floating-chat-window.is-open {
+    clip-path: none;
+    transform: translateY(0);
+  }
+  .floating-chat-window.is-minimized {
+    /* only the header is shown, rounded, sitting just above the bottom edge */
+    clip-path: inset(0 0 calc(100% - var(--fc-header-h)) 0
+                     round var(--fc-radius) var(--fc-radius) 0 0);
+    transform: translateY(calc(100% - var(--fc-header-h) - var(--fc-gap)));
+    transform-origin: bottom center;
+  }
+}
