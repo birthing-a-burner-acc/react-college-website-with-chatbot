@@ -105,7 +105,7 @@ const FloatingChat = () => {
               height: "100%",
               display: "block",
             }}
-            connect={{ url: "http://localhost:5000/api/chat", method: "POST" }}
+            connect={{ url: `${import.meta.env.VITE_API_URL}/api/chat`, method: "POST" }}
             introMessage={{
               text: "Hello! I'm your college assistant. Ask me about courses, admissions, or facilities.",
             }}
