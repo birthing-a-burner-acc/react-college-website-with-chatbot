@@ -17,9 +17,10 @@ Here's a sneak peek of what the website looks like:
 - **Styling:** CSS
 - **Routing:** React Router DOM
 - **Backend:** Express
+- **Chatbot UI** Deep Chat (React)
 
 ---
 
-Thank you for checking out, If you find this project helpful, please consider giving it a ⭐.
+Thank you for checking out, If you find this project helpful, please consider giving it a ⭐. Special thanks to [2SSK](https://github.com/2SSK) and his project [react-college-website](https://github.com/2SSK/react-college-website), for giving me a solid, neat, scalable, foundation for building upon it. This ain't AI speaking.
 
 ---
