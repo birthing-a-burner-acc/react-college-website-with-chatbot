@@ -7,6 +7,8 @@ import { GoogleGenAI } from '@google/genai';
 import pdf from '@cedrugs/pdf-parse';
 const PORT = process.env.PORT || 5000;
 
+const app = express();
+
 app.use(express.json());
 
 const allowedOrigins = [
