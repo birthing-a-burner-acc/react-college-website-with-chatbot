@@ -29,7 +29,9 @@ const upload = multer({
 });
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017';
-const client = new MongoClient(mongoUrl);
+const client = new MongoClient(mongoUrl, {
+  autoSelectFamily: false,
+});
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 function chunkText(text, chunkSize = 500, overlap = 50) {
