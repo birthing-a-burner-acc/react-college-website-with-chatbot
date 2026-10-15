@@ -4,7 +4,7 @@ Welcome to the **Educational Institution Website** repository! This project is a
 
 ### 🌐 Live Preview
 
-Check out the live version of the website [here](https://react-college-website.vercel.app/)
+Check out the live version of the website [here](https://react-college-website-with-chatbot-ecru.vercel.app)
 
 ### 🌐 Screenshots
 
