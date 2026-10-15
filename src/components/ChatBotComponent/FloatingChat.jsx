@@ -3,7 +3,7 @@ import { DeepChat } from "deep-chat-react";
 import "./FloatingChat.css";
 
 const CHAT_STORAGE_KEY = "react-chat-history";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const clearStoredChat = () => {
   try {
     Object.keys(window.localStorage)
@@ -105,7 +105,7 @@ const FloatingChat = () => {
               height: "100%",
               display: "block",
             }}
-            connect={{ url: `${import.meta.env.VITE_API_URL}/api/chat`, method: "POST" }}
+            connect={{ url: `${API_URL}/api/chat`, method: "POST" }}
             introMessage={{
               text: "Hello! I'm your college assistant. Ask me about courses, admissions, or facilities.",
             }}
