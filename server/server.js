@@ -5,12 +5,18 @@ import cors from 'cors';
 import multer from 'multer';
 import { GoogleGenAI } from '@google/genai';
 import pdf from '@cedrugs/pdf-parse';
-
-const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173' }));
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  process.env.CORS_ORIGIN 
+].filter(Boolean);
+
+app.use(cors({ origin: allowedOrigins }));
+
+const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -189,7 +195,7 @@ ${context}`,
   }
 });
 
-  app.listen(PORT, () =>
-    console.log(`Backend running on http://localhost:${PORT}`)
-  );
+  app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
 })();
