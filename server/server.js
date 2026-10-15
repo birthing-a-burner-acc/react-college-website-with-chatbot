@@ -16,8 +16,6 @@ const allowedOrigins = [
 
 app.use(cors({ origin: allowedOrigins }));
 
-const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
-
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB max
