@@ -21,6 +21,6 @@ Here's a sneak peek of what the website looks like:
 
 ---
 
-Thank you for checking out, If you find this project helpful, please consider giving it a ⭐. Special thanks to [2SSK](https://github.com/2SSK) and his project [react-college-website](https://github.com/2SSK/react-college-website), for giving me a solid, neat, scalable, foundation for building upon it. This ain't AI speaking.
+Thank you for checking out, If you find this project helpful, please consider giving it a ⭐. Special thanks to [2SSK](https://github.com/2SSK) and his project [react-college-website](https://github.com/2SSK/react-college-website), for giving me a solid, neat, easy to maintain foundation for building upon it. This ain't AI speaking.
 
 ---
